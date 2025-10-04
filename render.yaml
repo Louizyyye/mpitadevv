@@ -4,8 +4,8 @@ services:
     runtime: python
     repo: https://github.com/Louizyyye/mpitadevv
     branch: main
-    plan: standard
-    region: Nairobi
+    plan: pro-4gb
+    region: frankfurt
 
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port 8000
@@ -82,7 +82,7 @@ services:
 
 databases:
   - name: mpita-medical-db
-    plan: standard
+    plan: pro-4gb
     databaseName: mpita_medical
     user: mpita_admin
     ipAllowList:
