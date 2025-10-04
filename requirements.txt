@@ -1,0 +1,27 @@
+# Core Framework
+fastapi==0.115.0
+uvicorn==0.30.6
+
+# Database ORM
+SQLAlchemy==2.0.34
+pymysql==1.1.1
+
+# Data Validation
+pydantic==2.9.2
+pydantic-settings==2.5.2
+
+# Environment Management
+python-dotenv==1.0.1
+
+# Security & Authentication
+passlib[bcrypt]==1.7.4
+python-jose==3.3.0
+
+# Date & Utilities
+python-multipart==0.0.9
+
+# Optional (for async DB)
+aiomysql==0.2.0
+
+# Logging, JSON, etc.
+requests==2.32.3
