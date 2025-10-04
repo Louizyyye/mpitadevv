@@ -5,7 +5,7 @@ services:
     repo: https://github.com/Louizyyye/mpitadevv
     branch: main
     plan: starter
-    region: frankfurt
+    region: Nairobi
 
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port 8000
@@ -82,7 +82,7 @@ services:
 
 databases:
   - name: mpita-medical-db
-    plan: starter
+    plan: postgres-starter
     databaseName: mpita_medical
     user: mpita_admin
     ipAllowList:
