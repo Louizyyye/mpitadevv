@@ -1,0 +1,158 @@
+2025-10-04 16:23:26,199 - app_logger - INFO - Application started successfully
+2025-10-04 16:54:47,063 - app_logger - INFO - Application started successfully
+2025-10-04 17:02:23,780 - app_logger - INFO - Application started successfully
+2025-10-04 17:02:27,423 - app_logger - INFO - Application started successfully
+2025-10-04 17:02:27,826 - app_logger - INFO - Application started successfully
+2025-10-04 17:02:27,826 - app_logger - INFO - Application started successfully
+2025-10-04 17:02:27,850 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 17:02:27,850 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 17:02:30,105 - app_logger - ERROR - Failed to create database tables: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-10-04 17:02:30,105 - app_logger - ERROR - Failed to create database tables: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-10-04 18:25:14,718 - app_logger - INFO - Application started successfully
+2025-10-04 18:25:17,317 - app_logger - INFO - Application started successfully
+2025-10-04 18:25:17,575 - app_logger - INFO - Application started successfully
+2025-10-04 18:25:17,575 - app_logger - INFO - Application started successfully
+2025-10-04 18:25:17,625 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 18:25:17,625 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 18:25:17,881 - app_logger - ERROR - Failed to create database tables: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-10-04 18:25:17,881 - app_logger - ERROR - Failed to create database tables: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-10-04 19:30:02,295 - app_logger - INFO - Application started successfully
+2025-10-04 19:30:04,473 - app_logger - INFO - Application started successfully
+2025-10-04 19:30:04,697 - app_logger - INFO - Application started successfully
+2025-10-04 19:30:04,697 - app_logger - INFO - Application started successfully
+2025-10-04 19:30:04,709 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 19:30:04,709 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 19:30:05,158 - app_logger - ERROR - Failed to create database tables: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-10-04 19:30:05,158 - app_logger - ERROR - Failed to create database tables: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-10-04 19:37:32,523 - app_logger - INFO - Application started successfully
+2025-10-04 19:37:34,585 - app_logger - INFO - Application started successfully
+2025-10-04 19:37:34,737 - app_logger - INFO - Application started successfully
+2025-10-04 19:37:34,737 - app_logger - INFO - Application started successfully
+2025-10-04 19:37:34,753 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 19:37:34,753 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 19:37:34,767 - app_logger - ERROR - Failed to create database tables: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-10-04 19:37:34,767 - app_logger - ERROR - Failed to create database tables: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-10-04 19:39:54,785 - app_logger - INFO - Application started successfully
+2025-10-04 19:39:54,786 - app_logger - INFO - Application started successfully
+2025-10-04 19:39:54,953 - app_logger - INFO - Application started successfully
+2025-10-04 19:39:54,952 - app_logger - INFO - Application started successfully
+2025-10-04 19:39:54,953 - app_logger - INFO - Application started successfully
+2025-10-04 19:39:54,971 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 19:39:54,971 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 19:39:54,971 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 19:39:54,982 - app_logger - ERROR - Failed to create database tables: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-10-04 19:39:54,982 - app_logger - ERROR - Failed to create database tables: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-10-04 19:39:54,986 - app_logger - ERROR - Failed to create database tables: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-10-04 19:39:54,986 - app_logger - ERROR - Failed to create database tables: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-10-04 21:26:10,594 - app_logger - INFO - Application started successfully
+2025-10-04 21:47:18,436 - app_logger - INFO - Application started successfully
+2025-10-04 21:47:18,439 - app_logger - INFO - Application started successfully
+2025-10-04 21:48:19,140 - app_logger - INFO - Application started successfully
+2025-10-04 21:48:19,302 - app_logger - INFO - Application started successfully
+2025-10-04 21:48:28,586 - app_logger - INFO - Application started successfully
+2025-10-04 21:48:28,713 - app_logger - INFO - Application started successfully
+2025-10-04 21:48:38,193 - app_logger - INFO - Application started successfully
+2025-10-04 21:55:01,533 - app_logger - INFO - Application started successfully
+2025-10-04 21:55:01,550 - app_logger - INFO - Application started successfully
+2025-10-04 21:56:09,018 - app_logger - INFO - Application started successfully
+2025-10-04 21:56:11,913 - app_logger - INFO - Application started successfully
+2025-10-04 22:01:47,093 - app_logger - INFO - Application started successfully
+2025-10-04 22:04:35,650 - app_logger - INFO - Application started successfully
+2025-10-04 22:04:35,696 - app_logger - INFO - Application started successfully
+2025-10-04 22:04:36,439 - app_logger - INFO - Application started successfully
+2025-10-04 22:04:36,439 - app_logger - INFO - Application started successfully
+2025-10-04 22:04:36,449 - app_logger - INFO - Application started successfully
+2025-10-04 22:04:36,449 - app_logger - INFO - Application started successfully
+2025-10-04 22:04:36,473 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 22:04:36,473 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 22:04:36,482 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 22:04:36,482 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 22:04:36,694 - app_logger - INFO - Database tables created successfully
+2025-10-04 22:04:36,694 - app_logger - INFO - Database tables created successfully
+2025-10-04 22:04:36,694 - app_logger - INFO - Database tables created successfully
+2025-10-04 22:04:36,694 - app_logger - INFO - Database tables created successfully
+2025-10-04 22:04:53,475 - app_logger - INFO - Application started successfully
+2025-10-04 22:04:56,165 - app_logger - INFO - Application started successfully
+2025-10-04 22:04:56,347 - app_logger - INFO - Application started successfully
+2025-10-04 22:04:56,347 - app_logger - INFO - Application started successfully
+2025-10-04 22:04:56,372 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 22:04:56,372 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 22:04:56,391 - app_logger - INFO - Database tables created successfully
+2025-10-04 22:04:56,391 - app_logger - INFO - Database tables created successfully
+2025-10-04 22:09:41,768 - app_logger - INFO - Shutting down Mpita Medical API...
+2025-10-04 22:09:41,768 - app_logger - INFO - Shutting down Mpita Medical API...
+2025-10-04 22:09:42,387 - app_logger - INFO - Shutting down Mpita Medical API...
+2025-10-04 22:09:42,387 - app_logger - INFO - Shutting down Mpita Medical API...
+2025-10-04 22:09:42,489 - app_logger - INFO - Shutting down Mpita Medical API...
+2025-10-04 22:09:42,489 - app_logger - INFO - Shutting down Mpita Medical API...
+2025-10-04 22:09:48,168 - app_logger - INFO - Application started successfully
+2025-10-04 22:09:48,224 - app_logger - INFO - Application started successfully
+2025-10-04 22:09:48,531 - app_logger - INFO - Application started successfully
+2025-10-04 22:09:48,531 - app_logger - INFO - Application started successfully
+2025-10-04 22:09:48,575 - app_logger - INFO - Application started successfully
+2025-10-04 22:09:48,575 - app_logger - INFO - Application started successfully
+2025-10-04 22:09:48,592 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 22:09:48,592 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 22:09:48,613 - app_logger - INFO - Database tables created successfully
+2025-10-04 22:09:48,613 - app_logger - INFO - Database tables created successfully
+2025-10-04 22:09:48,618 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 22:09:48,618 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 22:09:48,638 - app_logger - INFO - Database tables created successfully
+2025-10-04 22:09:48,638 - app_logger - INFO - Database tables created successfully
+2025-10-04 22:09:48,662 - app_logger - INFO - Application started successfully
+2025-10-04 22:09:48,926 - app_logger - INFO - Application started successfully
+2025-10-04 22:09:48,926 - app_logger - INFO - Application started successfully
+2025-10-04 22:09:48,956 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 22:09:48,956 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 22:09:48,974 - app_logger - INFO - Database tables created successfully
+2025-10-04 22:09:48,974 - app_logger - INFO - Database tables created successfully
+2025-10-04 22:10:24,054 - app_logger - INFO - Shutting down Mpita Medical API...
+2025-10-04 22:10:24,054 - app_logger - INFO - Shutting down Mpita Medical API...
+2025-10-04 22:10:24,480 - app_logger - INFO - Shutting down Mpita Medical API...
+2025-10-04 22:10:24,480 - app_logger - INFO - Shutting down Mpita Medical API...
+2025-10-04 22:10:25,104 - app_logger - INFO - Shutting down Mpita Medical API...
+2025-10-04 22:10:25,104 - app_logger - INFO - Shutting down Mpita Medical API...
+2025-10-04 22:45:17,184 - app_logger - INFO - Application started successfully
+2025-10-04 22:45:17,421 - app_logger - INFO - Application started successfully
+2025-10-04 22:45:17,421 - app_logger - INFO - Application started successfully
+2025-10-04 22:45:17,472 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 22:45:17,472 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 22:45:17,497 - app_logger - INFO - Database tables created successfully
+2025-10-04 22:45:17,497 - app_logger - INFO - Database tables created successfully
+2025-10-04 22:45:17,881 - app_logger - INFO - Application started successfully
+2025-10-04 22:45:18,083 - app_logger - INFO - Application started successfully
+2025-10-04 22:45:18,083 - app_logger - INFO - Application started successfully
+2025-10-04 22:45:18,112 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 22:45:18,112 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 22:45:18,134 - app_logger - INFO - Database tables created successfully
+2025-10-04 22:45:18,134 - app_logger - INFO - Database tables created successfully
+2025-10-04 22:45:18,339 - app_logger - INFO - Application started successfully
+2025-10-04 22:45:18,584 - app_logger - INFO - Application started successfully
+2025-10-04 22:45:18,584 - app_logger - INFO - Application started successfully
+2025-10-04 22:45:18,615 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 22:45:18,615 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 22:45:18,638 - app_logger - INFO - Database tables created successfully
+2025-10-04 22:45:18,638 - app_logger - INFO - Database tables created successfully
+2025-10-04 22:45:25,342 - app_logger - INFO - Application started successfully
+2025-10-04 22:45:29,003 - app_logger - INFO - Application started successfully
+2025-10-04 22:45:29,131 - app_logger - INFO - Application started successfully
+2025-10-04 22:45:29,131 - app_logger - INFO - Application started successfully
+2025-10-04 22:45:29,148 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 22:45:29,148 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 22:45:29,166 - app_logger - INFO - Database tables created successfully
+2025-10-04 22:45:29,166 - app_logger - INFO - Database tables created successfully
+2025-10-04 23:07:47,589 - app_logger - INFO - Application started successfully
+2025-10-04 23:07:47,622 - app_logger - INFO - Starting Mpita Medical API...
+2025-10-04 23:07:47,683 - app_logger - INFO - Database tables created successfully
