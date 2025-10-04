@@ -4,7 +4,7 @@ services:
     runtime: python
     repo: https://github.com/Louizyyye/mpitadevv
     branch: main
-    plan: pro-4gb
+    plan: pro
     region: frankfurt
 
     buildCommand: pip install -r requirements.txt
@@ -82,7 +82,7 @@ services:
 
 databases:
   - name: mpita-medical-db
-    plan: pro-4gb
+    plan: pro
     databaseName: mpita_medical
     user: mpita_admin
     ipAllowList:
