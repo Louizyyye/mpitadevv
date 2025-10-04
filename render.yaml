@@ -29,11 +29,6 @@ services:
 
     healthCheckPath: /docs
 
-    scaling:
-      minInstances: 1
-      maxInstances: 3
-      targetCPUPercent: 70
-      targetMemoryPercent: 70
 
   - type: worker
     name: mpita-notification-worker
