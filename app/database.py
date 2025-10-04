@@ -28,7 +28,7 @@ MYSQL_PORT = os.getenv("MYSQL_PORT", "3306")
 # Primary (default) database URL (override DATABASE_URL in .env if you want)
 DEFAULT_DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    f"mysql+pymysql://root:cassanovaFry1!@localhost:3306/mpita_medical"
+    f"mysql+pymysql+postgresql+psycopg3://root:cassanovaFry1!@localhost:3306/mpita_medical"
 )
 
 # Additional DBs (optional). You can add/remove keys as needed.
