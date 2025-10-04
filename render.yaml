@@ -1,6 +1,3 @@
-previews:
-  generation: automatic
-
 services:
   - type: web
     name: mpita-medical-api
@@ -10,11 +7,10 @@ services:
     plan: starter
     region: frankfurt
 
-    # Build and run FastAPI
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port 8000
 
-    autoDeploy: true            # <-- fixed: boolean, not 'autoDeployTrigger'
+    autoDeploy: true
 
     envVars:
       - key: ENV
@@ -86,13 +82,12 @@ services:
 
 databases:
   - name: mpita-medical-db
-    plan: standard
+    plan: starter
     databaseName: mpita_medical
     user: mpita_admin
     ipAllowList:
       - source: 0.0.0.0/0
         description: open-access-for-render
-    diskSizeGB: 10
     highAvailability:
       enabled: false
 
