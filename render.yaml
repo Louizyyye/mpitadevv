@@ -2,9 +2,6 @@ previews:
   generation: automatic
 
 services:
-  # ===============================================
-  # 1️⃣  Main FastAPI Backend
-  # ===============================================
   - type: web
     name: mpita-medical-api
     runtime: python
@@ -17,7 +14,7 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port 8000
 
-    autoDeployTrigger: 'on'
+    autoDeploy: true            # <-- fixed: boolean, not 'autoDeployTrigger'
 
     envVars:
       - key: ENV
@@ -42,9 +39,6 @@ services:
       targetCPUPercent: 70
       targetMemoryPercent: 70
 
-  # ===============================================
-  # 2️⃣  Background Notification Worker
-  # ===============================================
   - type: worker
     name: mpita-notification-worker
     runtime: python
@@ -60,13 +54,10 @@ services:
           name: mpita-medical-db
           property: connectionString
 
-  # ===============================================
-  # 3️⃣  Cron Job — Database Auto Backup
-  # ===============================================
   - type: cron
     name: mpita-db-backup
     runtime: python
-    schedule: '0 0 * * *'  # daily at midnight
+    schedule: '0 0 * * *'
     repo: https://github.com/Louizyyye/mpitadevv
     buildCommand: pip install -r requirements.txt
     startCommand: python app/scripts/backup.py
@@ -77,9 +68,6 @@ services:
           name: mpita-medical-db
           property: connectionString
 
-  # ===============================================
-  # 4️⃣  Static Frontend / Docs Site (Optional)
-  # ===============================================
   - type: web
     name: mpita-medical-docs
     runtime: static
@@ -96,9 +84,6 @@ services:
         source: /
         destination: /docs
 
-# ===============================================
-# 🗄️ DATABASES (MYSQL)
-# ===============================================
 databases:
   - name: mpita-medical-db
     plan: standard
@@ -111,9 +96,6 @@ databases:
     highAvailability:
       enabled: false
 
-# ===============================================
-# 🔐 ENVIRONMENT GROUP
-# ===============================================
 envVarGroups:
   - name: mpita-env
     envVars:
