@@ -72,6 +72,62 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+
+class OTPRequest(BaseModel):
+  phone: str
+
+
+class PatientRegister(BaseModel):
+  full_name: str
+  username: str
+  national_id: str
+  phone: str
+  email: str
+  password: str
+  otp: str
+  payment: str
+
+class Patient(BaseModel):
+    full_name: str
+    username: str
+    national_id: str
+    phone: str
+    email: str
+    password: str
+    otp: str
+    payment: str
+
+
+class PatientLogin(BaseModel):
+    email: str
+    password: str
+
+
+@app.post("/send-otp")
+async def send_otp(data: OTPRequest):
+  # Generate OTP and send SMS
+  return {"message": "OTP sent"}
+
+
+@app.post("/register-patient")
+async def register_patient(data: PatientRegister):
+  # Verify OTP
+  # Save patient data to DB
+  # Return success or failure
+  return {"message": "Patient registered", "username": data.username}
+
+@app.post("/register-patient")
+async def register_patient(patient: Patient):
+    # Here, save patient to DB, verify OTP, etc.
+    # Example response:
+    return {"username": patient.username, "status": "registered"}
+
+@app.post("/patient-login")
+async def patient_login(login: PatientLogin):
+    # Verify credentials
+    if login.email == "test@example.com" and login.password == "secret":
+        return {"username": "John Doe"}
+    raise HTTPException(status_code=401, detail="Invalid credentials")
 # -------------------------------------------------------------------------
 # Daraja Models
 # -------------------------------------------------------------------------

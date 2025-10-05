@@ -1,10 +1,173 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mpita Medical</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-50">
+
+  <!-- HEADER -->
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
+      <a href="/" class="text-2xl font-bold text-blue-700">Mpita Medical</a>
+      <div class="flex gap-3">
+        <button id="openLogin" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+          Patient Login
+        </button>
+        <button id="openRegister" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+          Register
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="max-w-2xl mx-auto p-6 mt-10 bg-white rounded-lg shadow">
+
+    <!-- LOGIN MODAL -->
+    <div id="loginModal" class="hidden fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+      <div class="bg-white p-6 rounded shadow w-full max-w-md relative">
+        <button onclick="closeLogin()" class="absolute top-2 right-2 text-gray-500">&times;</button>
+        <h2 class="text-xl font-bold mb-4">Patient Login</h2>
+        <form id="loginForm" class="space-y-4">
+          <div>
+            <label>Email</label>
+            <input type="email" name="email" required class="w-full border rounded px-3 py-2">
+          </div>
+          <div>
+            <label>Password</label>
+            <input type="password" name="password" required class="w-full border rounded px-3 py-2">
+          </div>
+          <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded">Login</button>
+        </form>
+        <div id="loginMsg" class="mt-2 text-red-500"></div>
+      </div>
+    </div>
+
+    <!-- REGISTER MODAL -->
+    <div id="registerModal" class="hidden fixed inset-0 bg-black/50 flex justify-center items-center z-50 overflow-auto">
+      <div class="bg-white p-6 rounded shadow w-full max-w-lg relative">
+        <button onclick="closeRegister()" class="absolute top-2 right-2 text-gray-500">&times;</button>
+        <h2 class="text-xl font-bold mb-4">Patient Registration</h2>
+        <form id="registerForm" class="space-y-4">
+
+          <div>
+            <label>Full Name</label>
+            <input type="text" name="name" required class="w-full border rounded px-3 py-2">
+          </div>
+
+          <div>
+            <label>Username</label>
+            <input type="text" name="username" required class="w-full border rounded px-3 py-2">
+          </div>
+
+          <div>
+            <label>National ID</label>
+            <input type="text" name="national_id" required class="w-full border rounded px-3 py-2">
+          </div>
+
+          <div>
+            <label>Phone</label>
+            <input type="text" name="phone" required class="w-full border rounded px-3 py-2">
+          </div>
+
+          <div>
+            <label>Email</label>
+            <input type="email" name="email" required class="w-full border rounded px-3 py-2">
+          </div>
+
+          <div>
+            <label>OTP (for verification)</label>
+            <input type="text" name="otp" required class="w-full border rounded px-3 py-2">
+          </div>
+
+          <div>
+            <label>Payment Option</label>
+            <select name="payment_option" required class="w-full border rounded px-3 py-2">
+              <option value="">Select Option</option>
+              <option value="pay_now">Pay Now</option>
+              <option value="pay_later">Pay Later</option>
+            </select>
+          </div>
+
+          <button type="submit" class="w-full bg-green-600 text-white py-2 rounded">Register Patient</button>
+
+        </form>
+        <div id="registerMsg" class="mt-2 text-red-500"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    const loginModal = document.getElementById('loginModal');
+    const registerModal = document.getElementById('registerModal');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const loginMsg = document.getElementById('loginMsg');
+    const registerMsg = document.getElementById('registerMsg');
+
+    // Open/Close Modals
+    document.getElementById('openLogin').addEventListener('click', () => loginModal.classList.remove('hidden'));
+    document.getElementById('openRegister').addEventListener('click', () => registerModal.classList.remove('hidden'));
+    function closeLogin(){ loginModal.classList.add('hidden'); loginMsg.textContent=''; }
+    function closeRegister(){ registerModal.classList.add('hidden'); registerMsg.textContent=''; }
+
+    // Login API call
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      loginMsg.textContent = '';
+      const data = Object.fromEntries(new FormData(loginForm).entries());
+
+      try {
+        const res = await fetch('/patient-login', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(data)
+        });
+        const resp = await res.json();
+        if(res.ok){
+          alert("Login successful! Welcome " + resp.username);
+          closeLogin();
+          window.location.href = `/patient-dashboard?user=${resp.username}`;
+        } else {
+          loginMsg.textContent = resp.detail || "Login failed";
+        }
+      } catch(err){
+        loginMsg.textContent = "Error: " + err.message;
+      }
+    });
+
+    // Register API call
+    registerForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      registerMsg.textContent = '';
+      const data = Object.fromEntries(new FormData(registerForm).entries());
+
+      try {
+        const res = await fetch('/register-patient', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(data)
+        });
+        const resp = await res.json();
+        if(res.ok){
+          alert("Patient registered successfully!");
+          closeRegister();
+          // optionally redirect to payment page if pay_now selected
+          if(data.payment_option === 'pay_now'){
+            window.location.href = `/payment?user=${data.username}`;
+          }
+        } else {
+          registerMsg.textContent = resp.detail || "Registration failed";
+        }
+      } catch(err){
+        registerMsg.textContent = "Error: " + err.message;
+      }
+    });
+  </script>
 
 </body>
 </html>
