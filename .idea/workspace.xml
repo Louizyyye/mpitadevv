@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c56b902b-9ad4-4934-8792-0e034defbf80" name="Changes" comment="fast api updates">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/__init_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/database.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +120,7 @@
       <updated>1759525375147</updated>
       <workItem from="1759525376218" duration="6000" />
       <workItem from="1759589398407" duration="15561000" />
-      <workItem from="1759674944768" duration="4777000" />
+      <workItem from="1759674944768" duration="6886000" />
     </task>
     <task id="LOCAL-00001" summary="initial app commit">
       <option name="closed" value="true" />
@@ -329,7 +330,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759677055824</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="fast api updates">
+      <option name="closed" value="true" />
+      <created>1759680936475</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1759680936475</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -348,7 +357,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/main.py</url>
-          <line>256</line>
+          <line>284</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

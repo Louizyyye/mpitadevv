@@ -15,8 +15,8 @@ DB_NAME = "mpita_medical"
 # URL-encode password safely (handles special chars)
 pwd_quoted = quote_plus(DB_PASSWORD)
 
-SERVER_URL = f"mysql+pymysql://{DB_USER}:{pwd_quoted}@{DB_HOST}:{DB_PORT}/"
-DB_URL = f"mysql+pymysql://{DB_USER}:{pwd_quoted}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+SERVER_URL = f"mysql+pymysql+postgresql://mpita_admin:ZdPfoG4xvhvaWQDTqY5YpNqEtTnJxIy7@dpg-d3goj6ili9vc73faa8a0-a"
+DB_URL = f"mysql+pymysql+postgresql://mpita_admin:ZdPfoG4xvhvaWQDTqY5YpNqEtTnJxIy7@dpg-d3goj6ili9vc73faa8a0-a/mpita_medical"
 
 ENGINE_KW = {
     "pool_size": 5,

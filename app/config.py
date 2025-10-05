@@ -1,4 +1,10 @@
 from pydantic_settings import BaseSettings
+import os
+
+SQLALCHEMY_DATABASE_URL = (
+    f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASS')}"
+    f"@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
+)
 
 class Settings(BaseSettings):
     # -----------------------------
@@ -10,7 +16,7 @@ class Settings(BaseSettings):
     # -----------------------------
     # Database Configuration
     # -----------------------------
-    DATABASE_URL: str = "mysql+pymysql://root:password@localhost:3306/mydatabase"
+    DATABASE_URL: str = "postgresql://mpita_admin:ZdPfoG4xvhvaWQDTqY5YpNqEtTnJxIy7@dpg-d3goj6ili9vc73faa8a0-a/mpita_medical"
 
     # -----------------------------
     # Security & JWT Configuration
