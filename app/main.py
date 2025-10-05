@@ -22,6 +22,23 @@ from app.utils.logger import setup_logger
 logger = setup_logger()
 logger.info("Initializing Mpita Medical API...")
 
+from dotenv import load_dotenv
+import os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load .env file for local dev
+load_dotenv(BASE_DIR / ".env")
+
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+
+if not SECRET_KEY:
+    raise ValueError("❌ SECRET_KEY not found. Please set it in environment variables.")
+
+print(f"SECRET_KEY loaded successfully: {SECRET_KEY[:10]}****")
+
 # -------------------------------------------------------------------------
 # Lifespan events (startup / shutdown)
 # -------------------------------------------------------------------------
