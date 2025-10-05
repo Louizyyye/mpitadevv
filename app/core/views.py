@@ -9,4 +9,4 @@ def home(request):
 def about(request):
     """About page"""
     context = {"title": "About"}
-    return render(request, "about.html", context)
+    return render(request, "index.html", context)
