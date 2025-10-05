@@ -34,22 +34,22 @@ POSTGRES_DB = os.getenv("POSTGRES_DB", "mpita_medical")
 # Render usually provides DATABASE_URL
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    f"postgresql+psycopg+mysql+pymysql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
+    f"postgresql+psycopg2+mysql+pymysql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
 )
 
 # Optional additional databases
 DATABASES: Dict[str, str] = {
     "main": os.getenv(
         "DATABASE_URL",
-        f"postgresql+psycopg://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
+        f"postgresql+psycopg2://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
     ),
     "analytics": os.getenv(
         "ANALYTICS_DB_URL",
-        f"postgresql+psycopg://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/mpita_analytics"
+        f"postgresql+psycopg2://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/mpita_analytics"
     ),
     "trading": os.getenv(
         "TRADING_DB_URL",
-        f"postgresql+psycopg://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/mpita_trading"
+        f"postgresql+psycopg2://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/mpita_trading"
     ),
 }
 
