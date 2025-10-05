@@ -26,11 +26,11 @@ load_dotenv()
 # -------------------------------------------------------------------
 # Environment Configuration
 # -------------------------------------------------------------------
-POSTGRES_USER = os.getenv("POSTGRES_USER", "postgres")
+POSTGRES_USER = os.getenv("POSTGRES_USER", "dpg-d3goj6ili9vc73faa8a0-a")
 POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", "cassanovaFry1!")
 POSTGRES_HOST = os.getenv("POSTGRES_HOST", "127.0.0.1")
 POSTGRES_PORT = os.getenv("POSTGRES_PORT", "5432")
-POSTGRES_DB = os.getenv("POSTGRES_DB", "mpita_medical")
+POSTGRES_DB = os.getenv("POSTGRES_DB", "mpita-medical-db")
 # Render usually provides DATABASE_URL
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
