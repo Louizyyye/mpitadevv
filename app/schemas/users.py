@@ -4,6 +4,14 @@ from typing import Optional
 from datetime import datetime
 
 # --- Schemas for Users ---
+class UserRead(BaseModel):
+    id: int
+    email: EmailStr
+    full_name: Optional[str] = None
+
+    class Config:
+        orm_mode = True  # required if reading from SQLAlchemy models
+
 class UserBase(BaseModel):
     name: str
     email: EmailStr
