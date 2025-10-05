@@ -24,6 +24,11 @@ from app.utils.logger import setup_logger
 from app.daraja_client import stk_push, airtime_push, bank_payment  # Assuming you have these functions
 
 # -------------------------------------------------------------------------
+if os.getenv("DAR_AJA_ENV") is None:
+    BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv()
+
+# -------------------------------------------------------------------------
 # Logger Setup
 # -------------------------------------------------------------------------
 logging.basicConfig(level=logging.INFO)
@@ -31,10 +36,6 @@ logger = logging.getLogger("mpita.backend")
 
 # -------------------------------------------------------------------------
 # Environment Variables
-# -------------------------------------------------------------------------
-if os.getenv("DAR_AJA_ENV") is None:
-    BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR / ".env")
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 if not SECRET_KEY:

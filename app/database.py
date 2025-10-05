@@ -26,21 +26,23 @@ load_dotenv()
 # -------------------------------------------------------------------
 # Environment Configuration
 # -------------------------------------------------------------------
-POSTGRES_USER = os.getenv("DB_USER", "postgres")
-POSTGRES_PASSWORD = os.getenv("DB_PASSWORD", "cassanovaFry1!")
-POSTGRES_HOST = os.getenv("DB_HOST", "localhost")
-POSTGRES_PORT = os.getenv("DB_PORT", "5432")
-POSTGRES_DB = os.getenv("DB_NAME", "mpita_medical")
-
+POSTGRES_USER = os.getenv("POSTGRES_USER", "postgres")
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", "cassanovaFry1!")
+POSTGRES_HOST = os.getenv("POSTGRES_HOST", "127.0.0.1")
+POSTGRES_PORT = os.getenv("POSTGRES_PORT", "5432")
+POSTGRES_DB = os.getenv("POSTGRES_DB", "mpita_medical")
 # Render usually provides DATABASE_URL
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    f"postgresql+psycopg://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
+    f"postgresql+psycopg+mysql+pymysql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
 )
 
 # Optional additional databases
 DATABASES: Dict[str, str] = {
-    "main": DATABASE_URL,
+    "main": os.getenv(
+        "DATABASE_URL",
+        f"postgresql+psycopg://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
+    ),
     "analytics": os.getenv(
         "ANALYTICS_DB_URL",
         f"postgresql+psycopg://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/mpita_analytics"
@@ -50,6 +52,12 @@ DATABASES: Dict[str, str] = {
         f"postgresql+psycopg://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/mpita_trading"
     ),
 }
+
+
+# Optional: print to verify
+if __name__ == "__main__":
+    for key, url in DATABASES.items():
+        print(f"{key} => {url}")
 
 # -------------------------------------------------------------------
 # SQLAlchemy Engine + Session Config
@@ -124,7 +132,7 @@ def init_db(db_name: str = None):
         Base.metadata.create_all(bind=engines[db_name])
         print(f"[INFO] ✅ Tables created in '{db_name}'")
     else:
-        for name, eng in engines.items():
+        for db_name, eng in engines.items():
             Base.metadata.create_all(bind=eng)
             print(f"[INFO] ✅ Tables created in '{name}'")
 
@@ -136,7 +144,7 @@ def drop_db(db_name: str = None):
         Base.metadata.drop_all(bind=engines[db_name])
         print(f"[WARNING] ⚠️ Dropped all tables in '{db_name}'")
     else:
-        for name, eng in engines.items():
+        for db_name, eng in engines.items():
             Base.metadata.drop_all(bind=eng)
             print(f"[WARNING] ⚠️ Dropped all tables in '{name}'")
 
