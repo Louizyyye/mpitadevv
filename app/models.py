@@ -1,20 +1,24 @@
 """
-Database models for Mpita Medical
-Includes Users, Appointments, Payments, Notifications, and Logs
+Database models for Mpita Medical Platform.
+Includes Users, Appointments, Payments, Notifications, and Logs.
+Compatible with PostgreSQL (psycopg3) and Render deployment.
 """
 
 from sqlalchemy import (
     Column, Integer, String, Float, DateTime, ForeignKey, Enum, Text, Index, Boolean
 )
-from sqlalchemy.ext.declarative import declarative_base
-from pydantic import BaseModel, EmailStr
 from sqlalchemy.orm import relationship
+from pydantic import BaseModel, EmailStr
 from datetime import datetime
 import enum
 
 from app.database import Base
 
-# ----------------- ENUMS -----------------
+
+# ============================================================
+# ENUM DEFINITIONS
+# ============================================================
+
 class UserRole(str, enum.Enum):
     PATIENT = "patient"
     ADMIN = "admin"
@@ -52,7 +56,10 @@ class LogLevel(str, enum.Enum):
     ERROR = "error"
 
 
-# ----------------- DATABASE MODELS -----------------
+# ============================================================
+# DATABASE MODELS
+# ============================================================
+
 class User(Base):
     __tablename__ = "users"
 
@@ -67,6 +74,7 @@ class User(Base):
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
 
+    # Relationships
     appointments = relationship("Appointment", back_populates="user", cascade="all, delete-orphan")
     payments = relationship("Payment", back_populates="user", cascade="all, delete-orphan")
     notifications = relationship("Notification", back_populates="user", cascade="all, delete-orphan")
@@ -210,7 +218,11 @@ class Log(Base):
             "created_at": self.created_at.isoformat()
         }
 
-# ----------------- Pydantic Schemas -----------------
+
+# ============================================================
+# PYDANTIC SCHEMAS
+# ============================================================
+
 class UserCreate(BaseModel):
     name: str
     email: EmailStr
@@ -218,6 +230,7 @@ class UserCreate(BaseModel):
     occupation: str | None = None
     password: str
     role: UserRole = UserRole.PATIENT
+
 
 class UserRead(BaseModel):
     id: int
