@@ -34,12 +34,13 @@ class UserRegister(BaseModel):
     name: str = Field(..., min_length=2, max_length=100)
     email: EmailStr
     phone: str = Field(..., min_length=10, max_length=20)
+    national_id: str = Field(..., min_length=4, max_length=20)
+    otp: str = Field(..., min_length=4, max_length=10)
     occupation: Optional[str] = Field(None, max_length=100)
     password: str = Field(..., min_length=8)
 
     @validator('phone')
     def validate_phone(cls, v):
-        # Remove spaces and validate format
         phone = re.sub(r'\s+', '', v)
         if not re.match(r'^\+?[0-9]{10,15}$', phone):
             raise ValueError('Invalid phone number format')
@@ -114,14 +115,17 @@ async def register_user(user_data: UserRegister, db: Session = Depends(get_db)):
             detail="Phone number already registered"
         )
 
-    # Create new user
+
+    # Create new user (add national_id and otp fields if present in model)
     new_user = User(
         name=user_data.name,
         email=user_data.email,
         phone=user_data.phone,
         occupation=user_data.occupation,
         hashed_password=hash_password(user_data.password),
-        role=UserRole.PATIENT
+        role=UserRole.PATIENT,
+        national_id=getattr(user_data, 'national_id', None),
+        otp=getattr(user_data, 'otp', None)
     )
 
     db.add(new_user)

@@ -10,6 +10,7 @@ from typing import Optional
 from fastapi import FastAPI, Request, status, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
@@ -78,11 +79,14 @@ app = FastAPI(
 # Mount static directory for assets (if needed)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# Serve index.html at root
+# Jinja2 templates setup
+templates = Jinja2Templates(directory="app/core/templates")
+
+
+# Serve modal-based template at root
 @app.get("/")
-async def root():
-    index_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "index.html")
-    return FileResponse(index_path, media_type="text/html")
+async def root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 
 class OTPRequest(BaseModel):

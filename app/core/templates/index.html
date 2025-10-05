@@ -53,45 +53,39 @@
         <h2 class="text-xl font-bold mb-4">Patient Registration</h2>
         <form id="registerForm" class="space-y-4">
 
+
           <div>
             <label>Full Name</label>
-            <input type="text" name="name" required class="w-full border rounded px-3 py-2">
+            <input type="text" name="full_name" required class="w-full border rounded px-3 py-2">
           </div>
-
           <div>
             <label>Username</label>
             <input type="text" name="username" required class="w-full border rounded px-3 py-2">
           </div>
-
           <div>
             <label>National ID</label>
             <input type="text" name="national_id" required class="w-full border rounded px-3 py-2">
           </div>
-
           <div>
             <label>Phone</label>
             <input type="text" name="phone" required class="w-full border rounded px-3 py-2">
           </div>
-
           <div>
             <label>Email</label>
             <input type="email" name="email" required class="w-full border rounded px-3 py-2">
           </div>
-
           <div>
-            <label>OTP (for verification)</label>
+            <label>Password</label>
+            <input type="password" name="password" required class="w-full border rounded px-3 py-2">
+          </div>
+          <div>
+            <label>OTP</label>
             <input type="text" name="otp" required class="w-full border rounded px-3 py-2">
           </div>
-
           <div>
-            <label>Payment Option</label>
-            <select name="payment_option" required class="w-full border rounded px-3 py-2">
-              <option value="">Select Option</option>
-              <option value="pay_now">Pay Now</option>
-              <option value="pay_later">Pay Later</option>
-            </select>
+            <label>Payment</label>
+            <input type="text" name="payment" required class="w-full border rounded px-3 py-2">
           </div>
-
           <button type="submit" class="w-full bg-green-600 text-white py-2 rounded">Register Patient</button>
 
         </form>
@@ -144,7 +138,18 @@
     registerForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       registerMsg.textContent = '';
-      const data = Object.fromEntries(new FormData(registerForm).entries());
+      const formData = new FormData(registerForm);
+      // Build the payload to match backend
+      const data = {
+        full_name: formData.get('full_name'),
+        username: formData.get('username'),
+        national_id: formData.get('national_id'),
+        phone: formData.get('phone'),
+        email: formData.get('email'),
+        password: formData.get('password'),
+        otp: formData.get('otp'),
+        payment: formData.get('payment')
+      };
 
       try {
         const res = await fetch('/register-patient', {
@@ -156,10 +161,6 @@
         if(res.ok){
           alert("Patient registered successfully!");
           closeRegister();
-          // optionally redirect to payment page if pay_now selected
-          if(data.payment_option === 'pay_now'){
-            window.location.href = `/payment?user=${data.username}`;
-          }
         } else {
           registerMsg.textContent = resp.detail || "Registration failed";
         }

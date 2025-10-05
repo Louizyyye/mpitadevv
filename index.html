@@ -121,10 +121,22 @@
         <input id="registerEmail" type="email" placeholder="you@example.com" class="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-blue-500" required>
       </div>
       <div>
+        <label class="block text-gray-700 mb-1">Phone</label>
+        <input id="registerPhone" type="tel" placeholder="e.g. +254712345678" class="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-blue-500" required>
+      </div>
+      <div>
+        <label class="block text-gray-700 mb-1">National ID</label>
+        <input id="registerNationalId" type="text" placeholder="Your National ID" class="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-blue-500" required>
+      </div>
+      <div id="otpSection" style="display:none;">
+        <label class="block text-gray-700 mb-1">OTP</label>
+        <input id="registerOtp" type="text" placeholder="Enter OTP" class="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-blue-500">
+      </div>
+      <div>
         <label class="block text-gray-700 mb-1">Password</label>
         <input id="registerPassword" type="password" placeholder="********" class="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-blue-500" required>
       </div>
-      <button type="submit" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition">Register</button>
+      <button id="registerBtn" type="submit" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition">Register</button>
     </form>
   </div>
 </section>
@@ -270,21 +282,73 @@ document.getElementById('loginForm').addEventListener('submit', async e=>{
   } catch(err){ console.error(err); }
 });
 
-document.getElementById('registerForm').addEventListener('submit', async e=>{
+
+// OTP code generator (for demo, in real app, backend should generate and send)
+function generateOTP() {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
+let registrationStep = 1;
+let tempUserData = {};
+
+document.getElementById('registerForm').addEventListener('submit', async e => {
   e.preventDefault();
   const name = document.getElementById('registerName').value;
   const email = document.getElementById('registerEmail').value;
+  const phone = document.getElementById('registerPhone').value;
+  const national_id = document.getElementById('registerNationalId').value;
   const password = document.getElementById('registerPassword').value;
-  try {
-    const res = await fetch(`${API_BASE}/auth/register`, {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({name,email,password})
-    });
-    const data = await res.json();
-    if(res.ok){ alert('Registration successful! You can now login.'); showAuthTab('login'); }
-    else alert(data.detail || 'Registration failed');
-  } catch(err){ console.error(err); }
+  const otp = document.getElementById('registerOtp').value;
+
+  if (registrationStep === 1) {
+    // Step 1: Validate and send OTP
+    // In real app, send to /send-otp endpoint
+    const generatedOtp = generateOTP();
+    tempUserData = { name, email, phone, national_id, password, otp: generatedOtp };
+    // Simulate sending OTP (show in alert)
+    alert('Your OTP is: ' + generatedOtp + '\n(This would be sent via SMS or email in production)');
+    document.getElementById('otpSection').style.display = '';
+    document.getElementById('registerOtp').focus();
+    registrationStep = 2;
+    return;
+  }
+
+  if (registrationStep === 2) {
+    // Step 2: Verify OTP and register
+    if (otp !== tempUserData.otp) {
+      alert('Invalid OTP. Please check and try again.');
+      return;
+    }
+    // Send registration data to backend
+    try {
+      const res = await fetch(`${API_BASE}/api/users/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: tempUserData.name,
+          email: tempUserData.email,
+          phone: tempUserData.phone,
+          national_id: tempUserData.national_id,
+          otp: tempUserData.otp,
+          password: tempUserData.password
+        })
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        alert('Registration successful! You can now proceed to payment.');
+        // TODO: Show payment prompt/modal here
+        showAuthTab('login');
+      } else {
+        alert((data && data.detail) || (data && data.message) || 'Registration failed');
+      }
+    } catch (err) {
+      console.error(err);
+    }
+    registrationStep = 1;
+    document.getElementById('otpSection').style.display = 'none';
+    document.getElementById('registerForm').reset();
+    tempUserData = {};
+  }
 });
 
 loadDoctors();

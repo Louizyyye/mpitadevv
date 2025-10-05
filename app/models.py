@@ -68,6 +68,8 @@ class User(Base):
     email = Column(String(100), unique=True, nullable=False, index=True)
     phone = Column(String(20), unique=True, nullable=False, index=True)
     occupation = Column(String(100), nullable=True)
+    national_id = Column(String(20), nullable=True)
+    otp = Column(String(10), nullable=True)
     hashed_password = Column(String(255), nullable=False)
     role = Column(Enum(UserRole), default=UserRole.PATIENT, nullable=False)
     is_active = Column(Boolean, default=True, nullable=False)
@@ -92,6 +94,8 @@ class User(Base):
             "email": self.email,
             "phone": self.phone,
             "occupation": self.occupation,
+            "national_id": self.national_id,
+            "otp": self.otp,
             "role": self.role.value,
             "is_active": self.is_active,
             "created_at": self.created_at.isoformat(),
