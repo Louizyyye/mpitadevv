@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Registration - Mpita Medical</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+
+  <main class="max-w-lg mx-auto p-6 mt-10 bg-white rounded-lg shadow">
+    <h1 class="text-2xl font-bold text-center mb-6">Patient Registration</h1>
+
+    <form id="registerForm" class="space-y-4">
+      <div>
+        <label class="block text-gray-700 mb-1">Patient Name</label>
+        <input type="text" name="full_name" required class="w-full border rounded px-3 py-2">
+      </div>
+      <div>
+        <label>Username</label>
+        <input type="text" name="username" required class="w-full border rounded px-3 py-2">
+      </div>
+      <div>
+        <label>National ID</label>
+        <input type="text" name="national_id" required class="w-full border rounded px-3 py-2">
+      </div>
+      <div>
+        <label>Phone Number</label>
+        <input type="tel" name="phone" required class="w-full border rounded px-3 py-2">
+      </div>
+      <div>
+        <label>Email</label>
+        <input type="email" name="email" required class="w-full border rounded px-3 py-2">
+      </div>
+      <div>
+        <label>Password</label>
+        <input type="password" name="password" required class="w-full border rounded px-3 py-2">
+      </div>
+
+      <!-- OTP Verification -->
+      <div>
+        <button type="button" id="sendOtp" class="bg-blue-600 text-white px-4 py-2 rounded">Send OTP</button>
+      </div>
+      <div>
+        <label>Enter OTP</label>
+        <input type="text" name="otp" id="otpInput" class="w-full border rounded px-3 py-2">
+      </div>
+
+      <!-- Payment Choice -->
+      <div>
+        <label>Payment Option</label>
+        <select name="payment" required class="w-full border rounded px-3 py-2">
+          <option value="">Select Payment Option</option>
+          <option value="pay_now">Pay Now</option>
+          <option value="pay_later">Pay Later</option>
+        </select>
+      </div>
+
+      <button type="submit" class="w-full bg-green-600 text-white py-2 rounded">Register</button>
+    </form>
+
+    <div id="message" class="mt-4 text-center text-red-500"></div>
+  </main>
+
+  <script>
+    const registerForm = document.getElementById('registerForm');
+    const sendOtpBtn = document.getElementById('sendOtp');
+    const messageDiv = document.getElementById('message');
+
+    // Send OTP
+    sendOtpBtn.addEventListener('click', async () => {
+      const phone = registerForm.phone.value;
+      if(!phone) { alert("Enter phone number first"); return; }
+
+      try {
+        const res = await fetch('https://your-fastapi-domain.com/send-otp', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({phone})
+        });
+        const data = await res.json();
+        if(res.ok) messageDiv.textContent = "OTP sent to your phone!";
+        else messageDiv.textContent = data.detail || "Failed to send OTP";
+      } catch(err) {
+        messageDiv.textContent = "Error sending OTP: " + err.message;
+      }
+    });
+
+    // Submit registration
+    registerForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = Object.fromEntries(new FormData(registerForm).entries());
+
+      try {
+        const res = await fetch('https://your-fastapi-domain.com/register-patient', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(formData)
+        });
+
+        const data = await res.json();
+        if(res.ok){
+          alert("Registration successful! Proceed to " + formData.payment.replace('_',' '));
+          if(formData.payment === "pay_now") {
+            window.location.href = `https://your-fastapi-domain.com/pay-now?patient=${formData.username}`;
+          } else {
+            window.location.href = `https://your-fastapi-domain.com/pay-later?patient=${formData.username}`;
+          }
+        } else {
+          messageDiv.textContent = data.detail || "Registration failed";
+        }
+      } catch(err) {
+        messageDiv.textContent = "Error: " + err.message;
+      }
+    });
+  </script>
+
+</body>
+</html>
