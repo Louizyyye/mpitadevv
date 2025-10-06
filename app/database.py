@@ -14,9 +14,11 @@ Multi-database SQLAlchemy handler for PostgreSQL (Render-ready).
 import os
 from contextlib import contextmanager
 from typing import Generator, Dict
+
 from dotenv import load_dotenv
-from sqlalchemy import create_engine, text
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine
+from sqlalchemy import text
+from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.pool import QueuePool
 
@@ -91,6 +93,31 @@ SessionLocal = Sessions["main"]
 
 # Base class for models
 Base = declarative_base()
+
+def create_engine_safely(name: str, url_env: str):
+    url = os.getenv(url_env)
+    if not url:
+        print(f"[ERROR] Missing database URL for '{name}'")
+        return None
+    try:
+        engine = create_engine(url, pool_pre_ping=True)
+        print(f"[INFO] Engine for '{name}' created successfully.")
+        return engine
+    except Exception as e:
+        print(f"[ERROR] ❌ Failed to create engine for '{name}': {e}")
+        return None
+
+engines = {
+    "main": create_engine_safely("main", "DATABASE_URL"),
+    "trading": create_engine_safely("trading", "TRADING_DATABASE_URL"),
+    "analytics": create_engine_safely("analytics", "ANALYTICS_DATABASE_URL")
+}
+
+# Safely handle missing 'main' engine
+if not engines["main"]:
+    raise RuntimeError("❌ Main database engine could not be initialized. Check DATABASE_URL and psycopg2 installation.")
+
+engine = engines["main"]
 
 # -------------------------------------------------------------------
 # FastAPI dependency (for dependency injection)
