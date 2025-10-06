@@ -1,3 +1,5 @@
+
+# EOF
 """
 app/schemas.py
 
@@ -188,5 +190,3 @@ class UserWithAppointments(UserResponse):
 class MessageResponse(BaseModel):
     message: str
 
-
-# EOF

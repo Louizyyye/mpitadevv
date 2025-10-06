@@ -25,9 +25,14 @@ from app.database import Base, engine, get_db
 from app.routers import appointments, payments
 from app.routers.otp import router as otp_router
 from app.routers.users import router as users_router
+from fastapi import FastAPI
+from app.routers import otp
 
-templates = Jinja2Templates(directory="app/templates")
+app = FastAPI()
 
+app.include_router(otp.router)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 # -------------------------------------------------------------------------
 if os.getenv("DAR_AJA_ENV") is None:
     BASE_DIR = Path(__file__).resolve().parent.parent
@@ -82,7 +87,9 @@ app = FastAPI(
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Jinja2 templates setup
-templates = Jinja2Templates(directory="app/core/templates")
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 
 
 # Serve modal-based template at root

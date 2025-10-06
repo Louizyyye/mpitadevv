@@ -5,11 +5,11 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 
 # ----- CONFIG: change if needed -----
-DB_USER = "root"
+DB_USER = "mpita_admin"
 DB_PASSWORD = "cassanovaFry1!"   # your new password
-DB_HOST = "localhost"
-DB_PORT = 3306
-DB_NAME = "mpita_medical"
+DB_HOST = "dpg-d3goj6ili9vc73faa8a0-a"
+DB_PORT = 5432
+DB_NAME = "mpita_admin"
 # ------------------------------------
 
 # URL-encode password safely (handles special chars)

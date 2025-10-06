@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, status, Body
+from fastapi import FastAPI, APIRouter, HTTPException, status, Body
 from app.utils.otp import generate_otp, send_otp_email, send_otp_sms
 import random
 
