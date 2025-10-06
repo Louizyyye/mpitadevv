@@ -221,7 +221,7 @@ async def mpesa_callback(payload: dict):
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000",
+        "https://mpitamedical.shop",
         "http://localhost:5173",
         "https://mpitamedical.com",
         "https://*.mpitamedical.com"
