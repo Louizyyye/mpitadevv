@@ -94,45 +94,41 @@ SessionLocal = Sessions["main"]
 # Base class for models
 Base = declarative_base()
 
-def create_engine_safely(name: str, url_env: str):
-    url = os.getenv(url_env)
-    if not url:
-        print(f"[ERROR] Missing database URL for '{name}'")
-        return None
-    try:
-        engine = create_engine(url, pool_pre_ping=True)
-        print(f"[INFO] Engine for '{name}' created successfully.")
-        return engine
-    except Exception as e:
-        print(f"[ERROR] ❌ Failed to create engine for '{name}': {e}")
-        return None
 
-engines = {
-    "main": create_engine_safely("main", "DATABASE_URL"),
-    "trading": create_engine_safely("trading", "TRADING_DATABASE_URL"),
-    "analytics": create_engine_safely("analytics", "ANALYTICS_DATABASE_URL")
+# Define your database URLs (Render env vars)
+db_urls = {
+    "main": os.getenv("DATABASE_URL"),
+    "analytics": os.getenv("ANALYTICS_DB_URL"),
+    "trading": os.getenv("TRADING_DB_URL"),
 }
 
-# Safely handle missing 'main' engine
-if not engines["main"]:
-    raise RuntimeError("❌ Main database engine could not be initialized. Check DATABASE_URL and psycopg2 installation.")
+# Initialize all available engines
+engines = {}
+for db_name, db_url in db_urls.items():
+    if db_url:  # Only create if URL exists
+        try:
+            db_engine = create_engine(db_url)
+            engines[db_name] = db_engine
+            print(f"✅ Created engine for {db_name}")
+        except Exception as e:
+            print(f"[ERROR] ❌ Failed to create engine for '{db_name}': {e}")
 
-engine = engines["main"]
+# Use the main engine
+if "main" not in engines:
+    raise KeyError("❌ No 'main' engine found. Check DATABASE_URL in environment variables.")
+else:
+    engine = engines["main"]
 
-# -------------------------------------------------------------------
-# FastAPI dependency (for dependency injection)
-# -------------------------------------------------------------------
-def get_db(db_name: str = "main") -> Generator[Session, None, None]:
-    """Yields a database session for FastAPI or direct use."""
-    if db_name not in Sessions:
-        raise ValueError(f"Unknown database '{db_name}'")
+# DB session factory
+SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
 
-    db = Sessions[db_name]()
+# Dependency for FastAPI routes
+def get_db():
+    db = SessionLocal()
     try:
         yield db
     finally:
         db.close()
-
 # -------------------------------------------------------------------
 # Context manager (for scripts, management commands, etc.)
 # -------------------------------------------------------------------
