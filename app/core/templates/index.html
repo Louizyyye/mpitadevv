@@ -1,174 +1,182 @@
 <!doctype html>
-<html lang="en">
+<html class="no-js" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mpita Medical</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-50">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mpita Medical - Quality Healthcare Services in Nairobi</title>
+  <meta name="description" content="Mpita Medical provides comprehensive healthcare services in Nairobi. Professional doctors, modern facilities, and affordable care for your family.">
 
-  <!-- HEADER -->
+  <!-- Open Graph -->
+  <meta property="og:title" content="Mpita Medical - Quality Healthcare Services">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mpita-medical.github.io">
+  <meta property="og:image" content="https://mpita-medical.github.io/assets/images/og-image.jpg">
+  <meta property="og:image:alt" content="Mpita Medical Healthcare Center">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#1e40af">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- PyScript -->
+  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+  <!-- =================== NAV =================== -->
   <header class="bg-white shadow">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
-      <a href="/" class="text-2xl font-bold text-blue-700">Mpita Medical</a>
-      <div class="flex gap-3">
-        <button id="openLogin" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-          Patient Login
-        </button>
-        <button id="openRegister" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
-          Register
-        </button>
-      </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16 items-center">
+      <a href="index.html" class="text-2xl font-bold text-blue-700">Mpita Medical</a>
+      <nav class="hidden md:flex space-x-6 items-center">
+        <a href="services.html" class="text-gray-700 hover:text-blue-600">Services</a>
+        <a href="contact.html" class="text-gray-700 hover:text-blue-600">Contact</a>
+        <button onclick="toggleMarketplace()" class="text-gray-700 hover:text-blue-600">Marketplace</button>
+        <a href="#authSection" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Login</a>
+        <a href="#authSection" class="border border-blue-600 text-blue-600 px-4 py-2 rounded hover:bg-blue-50 transition">Register</a>
+      </nav>
+      <button onclick="toggleMobileMenu()" class="md:hidden text-gray-700">☰</button>
+    </div>
+
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t px-6 py-4 space-y-4">
+      <a href="services.html" class="block text-gray-700 hover:text-blue-600">Services</a>
+      <a href="contact.html" class="block text-gray-700 hover:text-blue-600">Contact</a>
+      <button onclick="toggleMarketplace()" class="block text-gray-700 hover:text-blue-600">Marketplace</button>
+      <a href="#authSection" class="block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Login</a>
+      <a href="#authSection" class="block border border-blue-600 text-blue-600 px-4 py-2 rounded hover:bg-blue-50 transition">Register</a>
     </div>
   </header>
 
-  <!-- MAIN -->
-  <main class="max-w-2xl mx-auto p-6 mt-10 bg-white rounded-lg shadow">
-
-    <!-- LOGIN MODAL -->
-    <div id="loginModal" class="hidden fixed inset-0 bg-black/50 flex justify-center items-center z-50">
-      <div class="bg-white p-6 rounded shadow w-full max-w-md relative">
-        <button onclick="closeLogin()" class="absolute top-2 right-2 text-gray-500">&times;</button>
-        <h2 class="text-xl font-bold mb-4">Patient Login</h2>
-        <form id="loginForm" class="space-y-4">
-          <div>
-            <label>Email</label>
-            <input type="email" name="email" required class="w-full border rounded px-3 py-2">
-          </div>
-          <div>
-            <label>Password</label>
-            <input type="password" name="password" required class="w-full border rounded px-3 py-2">
-          </div>
-          <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded">Login</button>
-        </form>
-        <div id="loginMsg" class="mt-2 text-red-500"></div>
+  <!-- =================== HERO =================== -->
+  <section class="relative bg-blue-600 text-white py-24">
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800"></div>
+    <div class="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-6">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">Your Health, Our Priority</h1>
+        <p class="text-xl mb-8 text-blue-100">Experience compassionate care and modern medical solutions at Mpita Medical.</p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="contact.html" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition text-center">
+            Book Appointment
+          </a>
+          <a href="services.html" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition text-center">
+            Our Services
+          </a>
+        </div>
+      </div>
+      <div class="relative bg-white/10 backdrop-blur-sm rounded-lg p-8">
+        <h3 class="text-2xl font-semibold mb-4">Emergency Hotline</h3>
+        <p class="text-3xl font-bold mb-2">+254-720214497</p>
+        <p class="text-blue-100">Available 24/7</p>
       </div>
     </div>
+  </section>
 
-    <!-- REGISTER MODAL -->
-    <div id="registerModal" class="hidden fixed inset-0 bg-black/50 flex justify-center items-center z-50 overflow-auto">
-      <div class="bg-white p-6 rounded shadow w-full max-w-lg relative">
-        <button onclick="closeRegister()" class="absolute top-2 right-2 text-gray-500">&times;</button>
-        <h2 class="text-xl font-bold mb-4">Patient Registration</h2>
-        <form id="registerForm" class="space-y-4">
-
-
-          <div>
-            <label>Full Name</label>
-            <input type="text" name="full_name" required class="w-full border rounded px-3 py-2">
-          </div>
-          <div>
-            <label>Username</label>
-            <input type="text" name="username" required class="w-full border rounded px-3 py-2">
-          </div>
-          <div>
-            <label>National ID</label>
-            <input type="text" name="national_id" required class="w-full border rounded px-3 py-2">
-          </div>
-          <div>
-            <label>Phone</label>
-            <input type="text" name="phone" required class="w-full border rounded px-3 py-2">
-          </div>
-          <div>
-            <label>Email</label>
-            <input type="email" name="email" required class="w-full border rounded px-3 py-2">
-          </div>
-          <div>
-            <label>Password</label>
-            <input type="password" name="password" required class="w-full border rounded px-3 py-2">
-          </div>
-          <div>
-            <label>OTP</label>
-            <input type="text" name="otp" required class="w-full border rounded px-3 py-2">
-          </div>
-          <div>
-            <label>Payment</label>
-            <input type="text" name="payment" required class="w-full border rounded px-3 py-2">
-          </div>
-          <button type="submit" class="w-full bg-green-600 text-white py-2 rounded">Register Patient</button>
-
-        </form>
-        <div id="registerMsg" class="mt-2 text-red-500"></div>
+  <!-- =================== AUTH =================== -->
+  <section id="authSection" class="py-16 bg-gray-100">
+    <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow">
+      <div class="flex justify-around mb-6">
+        <button id="loginTab" onclick="showAuthTab('login')" class="text-blue-600 font-bold border-b-2 border-blue-600 pb-2">Login</button>
+        <button id="registerTab" onclick="showAuthTab('register')" class="text-gray-500 hover:text-blue-600 pb-2">Register</button>
       </div>
+
+      <form id="loginForm" class="space-y-4">
+        <input id="loginEmail" type="email" placeholder="Email" class="w-full border border-gray-300 rounded px-4 py-2" required>
+        <input id="loginPassword" type="password" placeholder="Password" class="w-full border border-gray-300 rounded px-4 py-2" required>
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Login</button>
+      </form>
+
+      <form id="registerForm" class="space-y-4 hidden">
+        <input id="registerName" type="text" placeholder="Full Name" class="w-full border border-gray-300 rounded px-4 py-2" required>
+        <input id="registerEmail" type="email" placeholder="Email" class="w-full border border-gray-300 rounded px-4 py-2" required>
+        <input id="registerPhone" type="tel" placeholder="Phone" class="w-full border border-gray-300 rounded px-4 py-2" required>
+        <input id="registerNationalId" type="text" placeholder="National ID" class="w-full border border-gray-300 rounded px-4 py-2" required>
+        <div id="otpSection" style="display:none;">
+          <input id="registerOtp" type="text" placeholder="Enter OTP" class="w-full border border-gray-300 rounded px-4 py-2">
+        </div>
+        <input id="registerPassword" type="password" placeholder="Password" class="w-full border border-gray-300 rounded px-4 py-2" required>
+        <button id="registerBtn" type="submit" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">Register</button>
+      </form>
     </div>
+  </section>
 
-  </main>
+  <!-- =================== DOCTORS =================== -->
+  <section id="doctorPortfolio" class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Meet Our Practitioners</h2>
+      <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 justify-items-center" id="doctorGrid"></div>
+    </div>
+  </section>
 
+  <!-- =================== FOOTER =================== -->
+  <footer class="bg-white border-t py-6 text-center text-gray-600">
+    &copy; 2025 Mpita Medical. All rights reserved.
+  </footer>
+
+  <!-- =================== MARKETPLACE SIDEBAR =================== -->
+  <div id="marketplaceSidebar" class="fixed right-0 top-0 h-full w-80 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50">
+    <div class="bg-green-600 text-white p-4 flex justify-between items-center">
+      <h3 class="text-lg font-semibold">Medical Marketplace</h3>
+      <button onclick="toggleMarketplace()">✕</button>
+    </div>
+    <div id="marketplaceContent" class="p-4 overflow-y-auto"></div>
+  </div>
+  <div id="marketplaceOverlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40" onclick="toggleMarketplace()"></div>
+
+  <!-- =================== JS LOGIC =================== -->
   <script>
-    const loginModal = document.getElementById('loginModal');
-    const registerModal = document.getElementById('registerModal');
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    const loginMsg = document.getElementById('loginMsg');
-    const registerMsg = document.getElementById('registerMsg');
+    const API_BASE = "https://mpitadevv.onrender.com";
 
-    // Open/Close Modals
-    document.getElementById('openLogin').addEventListener('click', () => loginModal.classList.remove('hidden'));
-    document.getElementById('openRegister').addEventListener('click', () => registerModal.classList.remove('hidden'));
-    function closeLogin(){ loginModal.classList.add('hidden'); loginMsg.textContent=''; }
-    function closeRegister(){ registerModal.classList.add('hidden'); registerMsg.textContent=''; }
+    function toggleMarketplace(){
+      document.getElementById('marketplaceSidebar').classList.toggle('translate-x-full');
+      document.getElementById('marketplaceOverlay').classList.toggle('hidden');
+    }
+    function toggleMobileMenu(){
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    }
+    function showAuthTab(tab){
+      const loginForm=document.getElementById('loginForm');
+      const registerForm=document.getElementById('registerForm');
+      if(tab==='login'){ loginForm.classList.remove('hidden'); registerForm.classList.add('hidden'); }
+      else { loginForm.classList.add('hidden'); registerForm.classList.remove('hidden'); }
+    }
 
-    // Login API call
-    loginForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      loginMsg.textContent = '';
-      const data = Object.fromEntries(new FormData(loginForm).entries());
-
-      try {
-        const res = await fetch('/patient-login', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify(data)
+    // Fetch Doctors
+    async function loadDoctors(){
+      try{
+        const res=await fetch(`${API_BASE}/doctors`);
+        const docs=await res.json();
+        const container=document.getElementById('doctorGrid');
+        container.innerHTML='';
+        docs.forEach(doc=>{
+          const div=document.createElement('div');
+          div.className="text-center";
+          div.innerHTML=`
+            <img src="${doc.image}" class="w-20 h-20 rounded-full mx-auto border-4 border-green-500 mb-2 object-cover">
+            <p class="font-medium">${doc.name}</p>`;
+          container.appendChild(div);
         });
-        const resp = await res.json();
-        if(res.ok){
-          alert("Login successful! Welcome " + resp.username);
-          closeLogin();
-          window.location.href = `/patient-dashboard?user=${resp.username}`;
-        } else {
-          loginMsg.textContent = resp.detail || "Login failed";
-        }
-      } catch(err){
-        loginMsg.textContent = "Error: " + err.message;
-      }
-    });
-
-    // Register API call
-    registerForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      registerMsg.textContent = '';
-      const formData = new FormData(registerForm);
-      // Build the payload to match backend
-      const data = {
-        full_name: formData.get('full_name'),
-        username: formData.get('username'),
-        national_id: formData.get('national_id'),
-        phone: formData.get('phone'),
-        email: formData.get('email'),
-        password: formData.get('password'),
-        otp: formData.get('otp'),
-        payment: formData.get('payment')
-      };
-
-      try {
-        const res = await fetch('/register-patient', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify(data)
-        });
-        const resp = await res.json();
-        if(res.ok){
-          alert("Patient registered successfully!");
-          closeRegister();
-        } else {
-          registerMsg.textContent = resp.detail || "Registration failed";
-        }
-      } catch(err){
-        registerMsg.textContent = "Error: " + err.message;
-      }
-    });
+      }catch(e){console.error(e);}
+    }
+    loadDoctors();
   </script>
+
+  <!-- =================== PYSCRIPT (Optional Python Logic) =================== -->
+    <!-- =================== PYSCRIPT (Optional Python Logic) =================== -->
+  <py-script>
+      import js
+
+# Log to browser console (js.console is provided by PyScript)
+
+      js.console.log("✅ PyScript loaded successfully inside Mpita Medical frontend.")
+
+# You can also print() — output will appear in PyScript iframe output area
+print("PyScript: ready")
+
+# Example: call a JS function from Python
+# if you have a global JS function like `loadDoctors()` you can call:
+# js.loadDoctors()
+  </py-script>
 
 </body>
 </html>

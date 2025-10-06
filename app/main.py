@@ -5,27 +5,28 @@ Includes dedicated Daraja endpoints for STK Push, Airtime, and Bank payments.
 """
 
 import logging
+import os
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import Optional
+
+from dotenv import load_dotenv
 from fastapi import FastAPI, Request, status, HTTPException
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
-from fastapi.templating import Jinja2Templates
+from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from fastapi.exceptions import RequestValidationError
-from sqlalchemy.exc import SQLAlchemyError
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, Field
-from dotenv import load_dotenv
-import os
-from pathlib import Path
+from sqlalchemy.exc import SQLAlchemyError
 
+from app.daraja_client import stk_push, airtime_push, bank_payment  # Assuming you have these functions
 from app.database import Base, engine, get_db
-from app.routers.users import router as users_router
 from app.routers import appointments, payments
 from app.routers.otp import router as otp_router
-from app.utils.logger import setup_logger
-from app.daraja_client import stk_push, airtime_push, bank_payment  # Assuming you have these functions
+from app.routers.users import router as users_router
+
+templates = Jinja2Templates(directory="app/templates")
 
 # -------------------------------------------------------------------------
 if os.getenv("DAR_AJA_ENV") is None:
@@ -221,10 +222,11 @@ async def mpesa_callback(payload: dict):
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000",
+        "https://mpitamedical.shop",
         "http://localhost:5173",
-        "https://mpitamedical.com",
-        "https://*.mpitamedical.com"
+        "https://Louizyyye.github.io",
+        "*"
+
     ],
     allow_credentials=True,
     allow_methods=["*"],
