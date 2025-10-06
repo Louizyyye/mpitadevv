@@ -23,6 +23,7 @@ from pathlib import Path
 from app.database import Base, engine, get_db
 from app.routers.users import router as users_router
 from app.routers import appointments, payments
+from app.routers.otp import router as otp_router
 from app.utils.logger import setup_logger
 from app.daraja_client import stk_push, airtime_push, bank_payment  # Assuming you have these functions
 
@@ -119,10 +120,7 @@ class PatientLogin(BaseModel):
     password: str
 
 
-@app.post("/send-otp")
-async def send_otp(data: OTPRequest):
-  # Generate OTP and send SMS
-  return {"message": "OTP sent"}
+    # The old send_otp endpoint is removed.
 
 
 @app.post("/register-patient")
@@ -284,6 +282,7 @@ async def health_check():
 app.include_router(users_router, prefix="/api/users", tags=["Users"])
 app.include_router(appointments.router, prefix="/api/appointments", tags=["Appointments"])
 app.include_router(payments.router, prefix="/api/payments", tags=["Payments"])
+app.include_router(otp_router, prefix="/api/otp", tags=["OTP"])
 
 # -------------------------------------------------------------------------
 # Run (for local dev)
