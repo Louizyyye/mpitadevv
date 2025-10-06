@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     # -----------------------------
     # Database Configuration
     # -----------------------------
-    DATABASE_URL: str = "postgresql://mpita_admin:ZdPfoG4xvhvaWQDTqY5YpNqEtTnJxIy7@dpg-d3goj6ili9vc73faa8a0-a/mpita_medical"
+    DATABASE_URL: str = "postgresql://mpita_admin:ZdPfoG4xvhvaWQDTqY5YpNqEtTnJxIy7@dpg-d3goj6ili9vc73faa8a0-a:5432/mpita_medical"
 
     # -----------------------------
     # Security & JWT Configuration

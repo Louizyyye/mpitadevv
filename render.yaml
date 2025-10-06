@@ -92,7 +92,7 @@ envVarGroups:
       - key: APP_NAME
         value: Mpita Medical System
       - key: EMAIL_SENDER
-        value: no-reply@mpitahealth.com
+        value: wellness@mpitamedical.shop
       - key: LOG_LEVEL
         value: info
       - key: TIMEZONE

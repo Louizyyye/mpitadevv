@@ -74,10 +74,10 @@ TEMPLATES = [
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("DB_NAME", "postgres"),
-        "USER": os.environ.get("DB_USER", "postgres"),
-        "PASSWORD": os.environ.get("DB_PASSWORD", ""),
-        "HOST": os.environ.get("DB_HOST", "localhost"),
+        "NAME": os.environ.get("DB_NAME", "mpita_admin"),
+        "USER": os.environ.get("DB_USER", "mpita_admin"),
+        "PASSWORD": os.environ.get("DB_PASSWORD", "ZdPfoG4xvhvaWQDTqY5YpNqEtTnJxIy7"),
+        "HOST": os.environ.get("DB_HOST", "dpg-d3goj6ili9vc73faa8a0-a"),
         "PORT": os.environ.get("DB_PORT", "5432"),
     }
 }
